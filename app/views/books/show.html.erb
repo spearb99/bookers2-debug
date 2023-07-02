@@ -27,6 +27,9 @@
           <td>
             コメント数：<span id="comment_count"><%= @book.book_comments.count %></span>
           </td>
+          <td>
+            閲覧数: <%= @book.read_counts.count %>
+          </td>
         </tr>
       </table>
       <table>
