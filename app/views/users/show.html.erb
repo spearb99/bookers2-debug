@@ -32,7 +32,7 @@
         </tr>
       </tbody>
     </table>
-      
+
     <table class="table table-bordered">
       <thead>
       <tr>
@@ -57,7 +57,7 @@
   <h4>7日間分の投稿数</h4>
   <table class='table table-bordered'>
     <thead>
-      <tr> 
+      <tr>
         <th>６日前</th>
         <th>５日前</th>
         <th>４日前</th>
@@ -82,7 +82,7 @@
 <canvas id="myLineChart"></canvas>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
   <script>
-    $(document).on('turbolinks:load', function() {
+      $(document).on('turbolinks:load', function() {
       var ctx = document.getElementById("myLineChart");
       var myLineChart = new Chart(ctx, {
         type: 'line',
@@ -93,11 +93,11 @@
               label: '投稿した本の数',
               data: [
                 <%= @books.created_6day_ago.count %>,
-                <%= @books.created_5day_ago.count %>, 
-                <%= @books.created_4day_ago.count %>, 
-                <%= @books.created_3day_ago.count %>, 
-                <%= @books.created_2day_ago.count %>, 
-                <%= @books.created_yesterday.count %>, 
+                <%= @books.created_5day_ago.count %>,
+                <%= @books.created_4day_ago.count %>,
+                <%= @books.created_3day_ago.count %>,
+                <%= @books.created_2day_ago.count %>,
+                <%= @books.created_yesterday.count %>,
                 <%= @books.created_today.count %>
               ],
               borderColor: "rgba(0,0,255,1)",
@@ -125,6 +125,16 @@
       });
     });
   </script>
+  <%= form_with url: user_search_path(@user), method: :get, local: false do |f| %>
+  <%= f.date_field :created_at %>
+  <%= f.submit '検索', class: 'btn btn-primary'  %>
+  <% end %>
+
+<div id="search_result">
+  <% if @search_book.present? %>
+    <%= render 'search', search_book: @search_book %>
+  <% end %>
+</div>
     </div>
   </div>
 </div>
