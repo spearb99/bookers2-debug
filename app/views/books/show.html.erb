@@ -30,6 +30,9 @@
           <td>
             閲覧数: <%= @book.read_counts.count %>
           </td>
+          <td>
+            <%= render "static.rate", book: @book %>
+          </td>
         </tr>
       </table>
       <table>
