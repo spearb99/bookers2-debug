@@ -16,6 +16,10 @@ class Book < ApplicationRecord
   scope :created_5day_ago, -> { where(created_at: 5.day.ago.all_day) } # 5日前
   scope :created_6day_ago, -> { where(created_at: 6.day.ago.all_day) } # 6日前
 
+  scope :latest, -> {order(created_at: :desc)}
+  scope :old, -> {order(created_at: :asc)}
+  scope :star_count, -> {order(star: :desc)}
+  
   validates :title,presence:true
   validates :body,presence:true,length:{maximum:200}
   
